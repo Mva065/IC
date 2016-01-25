@@ -1,0 +1,31 @@
+int led1 = 9;
+int led2= 10;
+int led3 = 11; 
+void setup() {
+pinMode(led1, OUTPUT);
+pinMode(3, INPUT);
+pinMode(led2, OUTPUT);
+pinMode(led3, OUTPUT);
+Serial.begin(9600);
+}
+void loop() {
+  int valorfotores = analogRead (3);
+  int i = valorfotores;
+  Serial.println(i);
+  if (i < 100){                                 
+  digitalWrite (led1, HIGH);  
+  digitalWrite(led2, HIGH);
+  digitalWrite(led3, HIGH);       
+  delay(100);
+  } else if (i < 200){ 
+  digitalWrite (led2, HIGH);                                
+  digitalWrite (led3, HIGH);       
+  delay(100);
+  } else if (i < 300){                                
+  digitalWrite (led3, HIGH);         
+  delay(100);
+  }
+  digitalWrite(led1, LOW);
+  digitalWrite(led2, LOW);
+  digitalWrite(led3, LOW);
+}
