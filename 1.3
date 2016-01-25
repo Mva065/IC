@@ -1,0 +1,44 @@
+int valorF;
+int valormin = 1023;
+int valormax = 0;
+int TCal=5000; //5 segons
+int led1 = 9;
+int led2= 10;
+int led3 = 11;
+void setup() {
+pinMode(led1, OUTPUT);
+pinMode(3, INPUT);
+pinMode(led2, OUTPUT);
+pinMode(led3, OUTPUT);
+
+while (millis() < TCal) {
+    //Es guarda el valor actual del sensor
+  valorF = analogRead(0);
+    /*Si el valor de la ultima comprobació és major que el que habia guardat
+    fins al moment, s'actualitza la variable */
+  if (valorF > valormax) {
+    valormax = valorF;
+  }
+  if (valorF < valormin) {
+    valormin = valorF;
+  }}
+  
+} void loop() {
+  int i = valorF;
+  if (i < valormax + valormax/2){                     
+  digitalWrite (led1, HIGH);             
+  digitalWrite(led2, HIGH);
+  digitalWrite(led3, HIGH);       
+  delay(100);
+  } else if (i > valormax + valormax/2 && i < valormin - valormin/2 ){ 
+  digitalWrite (led2, HIGH);                                
+  digitalWrite (led3, HIGH);       
+  delay(100);
+  } else if (i < valormin - 0.1*valormin){                                
+  digitalWrite (led3, HIGH);         
+  delay(100);
+  }
+  digitalWrite(led1, LOW);
+  digitalWrite(led2, LOW);
+  digitalWrite(led3, LOW);
+}
