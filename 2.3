@@ -1,0 +1,138 @@
+#include <IRremote.h>
+#include <IRremoteInt.h>
+
+int RECV_PIN = 11;
+int a = 4;
+int b = 5;
+int c = 6;
+int d = 7;
+int e = 8;
+int f = 10;
+int g = 9;
+int valor =0;
+ 
+IRrecv irrecv(RECV_PIN);
+decode_results results;
+ 
+void setup()
+{
+  Serial.begin(9600);
+  irrecv.enableIRIn(); // Start the receiver
+  pinMode(a, OUTPUT);
+  pinMode(b, OUTPUT);
+  pinMode(c, OUTPUT);
+  pinMode(d, OUTPUT);
+  pinMode(e, OUTPUT);
+  pinMode(f, OUTPUT);
+  pinMode(g, OUTPUT);
+}
+ 
+void loop() {
+  if (irrecv.decode(&results)) {
+ 
+    valor = results.value, DEC;
+ 
+    switch (valor) { 
+    case 26775: 
+      reset();  
+    digitalWrite(a,HIGH); 
+    digitalWrite(b,HIGH); 
+    digitalWrite(c,HIGH); 
+    digitalWrite(d,HIGH); 
+    digitalWrite(e,HIGH); 
+    digitalWrite(f,HIGH);    
+      break; 
+    case 12495: 
+      reset();  
+    digitalWrite(b,HIGH); 
+    digitalWrite(c,HIGH);  
+      break; 
+    case 6375: 
+      reset();  
+    digitalWrite(a,HIGH); 
+    digitalWrite(b,HIGH); 
+    digitalWrite(e,HIGH); 
+    digitalWrite(d,HIGH); 
+    digitalWrite(g,HIGH);  
+      break; 
+    case 31365: 
+      reset(); 
+    digitalWrite(a,HIGH); 
+    digitalWrite(b,HIGH); 
+    digitalWrite(c,HIGH); 
+    digitalWrite(d,HIGH); 
+    digitalWrite(g,HIGH);  
+      break; 
+    case 4335: 
+      reset();  
+    digitalWrite(f,HIGH); 
+    digitalWrite(b,HIGH); 
+    digitalWrite(g,HIGH); 
+    digitalWrite(c,HIGH);  
+      break; 
+    case 14535: 
+      reset();  
+    digitalWrite(a,HIGH); 
+    digitalWrite(c,HIGH); 
+    digitalWrite(d,HIGH); 
+    digitalWrite(f,HIGH); 
+    digitalWrite(g,HIGH);  
+      break; 
+    case 23205: 
+      reset();  
+    digitalWrite(a,HIGH); 
+    digitalWrite(c,HIGH); 
+    digitalWrite(d,HIGH); 
+    digitalWrite(e,HIGH); 
+    digitalWrite(f,HIGH); 
+    digitalWrite(g,HIGH);  
+      break; 
+    case 17085: 
+      reset();  
+    digitalWrite(a,HIGH); 
+    digitalWrite(b,HIGH); 
+    digitalWrite(c,HIGH);  
+      break; 
+    case 19125: 
+      reset(); 
+    digitalWrite(a,HIGH); 
+    digitalWrite(b,HIGH); 
+    digitalWrite(c,HIGH); 
+    digitalWrite(d,HIGH); 
+    digitalWrite(e,HIGH); 
+    digitalWrite(f,HIGH); 
+    digitalWrite(g,HIGH);  
+      break; 
+    case 21165: 
+      reset();  
+    digitalWrite(a,HIGH); 
+    digitalWrite(b,HIGH); 
+    digitalWrite(c,HIGH); 
+    digitalWrite(g,HIGH); 
+    digitalWrite(f,HIGH);  
+      break; 
+     case -15811: 
+      reset();  
+    digitalWrite(a,LOW); 
+  digitalWrite(b,LOW); 
+  digitalWrite(c,LOW); 
+  digitalWrite(d,LOW); 
+  digitalWrite(e,LOW); 
+  digitalWrite(f,LOW); 
+  digitalWrite(g,LOW); 
+      break; 
+  } 
+ delay(125);
+    irrecv.resume();
+  }
+}
+  void reset(){ 
+  digitalWrite(4,LOW); 
+  digitalWrite(5,LOW); 
+  digitalWrite(6,LOW); 
+  digitalWrite(7,LOW); 
+  digitalWrite(8,LOW); 
+  digitalWrite(9,LOW); 
+  digitalWrite(10,LOW); 
+  digitalWrite(11,LOW); 
+}
