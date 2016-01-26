@@ -2,7 +2,7 @@
 #include <IRremoteInt.h>
  
 int RECV_PIN = 11;
-int led_1 = 13;
+int led = 13;
 int valor =0;
  
 IRrecv irrecv(RECV_PIN);
@@ -12,19 +12,19 @@ void setup()
 {
   Serial.begin(9600);
   irrecv.enableIRIn(); // Start the receiver
-  pinMode(led_1, OUTPUT);   
+  pinMode(led, OUTPUT);   
  
 }
  
 void loop() {
   if (irrecv.decode(&results)) {
-    valor= results.value, DEC;
+    valor = results.value, DEC;
 
-    if ((valor)==12495){
-      digitalWrite(led_1, HIGH);
+    if ((valor) == 12495){ // Botó numero 1
+      digitalWrite(led1, HIGH);
     }
-    if ((valor)==6375){
-      digitalWrite(led_1, LOW);
+    if ((valor)==6375){ //Botó numero 2
+      digitalWrite(led1, LOW);
     }
     irrecv.resume();
     
